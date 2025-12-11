@@ -17,18 +17,11 @@ app.get("/api/health", (req, res) => {
 });
 
 // make our app ready for deployment
-// if (ENV.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname, "../admin/dist")));
-//   app.get("/{*any}", (req, res) => {
-//     res.sendFile(path.join(__dirname, "../admin", "dist", "index.html"));
-//   });
-// }
-
-if (process.env.NODE_ENV === "production") {
+if (ENV.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../admin/dist")));
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "../admin", "dist", "index.html"))
-  );
+  app.get("/{*any}", (req, res) => {
+    res.sendFile(path.join(__dirname, "../admin", "dist", "index.html"));
+  });
 }
 
 const startServer = async () => {

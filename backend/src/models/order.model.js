@@ -15,6 +15,15 @@ const orderItemSchema = new mongoose.Schema({
     required: true,
     min: 0,
   },
+  quantity: {
+    type: Number,
+    required: true,
+    min: 1,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
 });
 
 const orderSchema = new mongoose.Schema(
@@ -29,6 +38,16 @@ const orderSchema = new mongoose.Schema(
       required: true,
     },
     orderItems: [orderItemSchema],
+    shippingAddress: {
+      type: shippingAddressSchema,
+      requied,
+    },
+    paymentResult: {
+      id: String,
+      status: String,
+    },
   },
   { timestamps: true }
 );
+
+export const Order = mongoose.model("Order", orderSchema);
