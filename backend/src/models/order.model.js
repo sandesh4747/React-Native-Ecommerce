@@ -26,6 +26,14 @@ const orderItemSchema = new mongoose.Schema({
   },
 });
 
+const shippingAddressSchema = new mongoose.Schema({
+  fullname: { type: String, required: true },
+  streetAddress: { type: String, required: true },
+  city: { type: String, required: true },
+  state: { type: String, required: true },
+  zipCode: { type: String, required: true },
+  phoneNumber: { type: String, required: true },
+});
 const orderSchema = new mongoose.Schema(
   {
     user: {
@@ -46,7 +54,24 @@ const orderSchema = new mongoose.Schema(
       id: String,
       status: String,
     },
+    totalPrice: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+    status: {
+      type: String,
+      enum: ["pending", "shipped", "delivered"],
+      default: "pending",
+    },
+    deliveredAt: {
+      type: Date,
+    },
+    shippedAt: {
+      type: Date,
+    },
   },
+
   { timestamps: true }
 );
 
