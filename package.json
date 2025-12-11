@@ -7,8 +7,8 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "build": "npm install --prefix backend && npm install --prefix admin && npm run build --prefix admin",
-    "start": "npm install --prefix backend && npm run start --prefix backend"
+    "build": "cd admin && npm install && npm run build && cd ../backend && npm install",
+    "start": "npm run start --prefix backend"
   },
   "repository": {
     "type": "git",
