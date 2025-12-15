@@ -12,6 +12,10 @@ export async function addAddress(req, res) {
       isDefault,
     } = req.body;
     const user = req.user;
+    if (!label || !fullName || !streetAddress || !city || !state || !zipCode) {
+      return res.status(400).json({ error: "All address fields are required" });
+    }
+
     // if this is set as default, unset previous default
     if (isDefault) {
       user.addresses.forEach((addr) => {
@@ -114,55 +118,56 @@ export async function deleteAddress(req, res) {
   }
 }
 
-export async function addToWhishlist(req, res) {
+export async function addToWishlist(req, res) {
   try {
     const { productId } = req.body;
     const user = req.user;
-    // check if product already in whishlist
-    if (user.whishlist.includes(productId)) {
-      return res.status(400).json({ error: "Product already in whishlist" });
+    // check if product already in wishlist
+    if (user.wishlist.includes(productId)) {
+      return res.status(400).json({ error: "Product already in wishlist" });
     }
-    user.whishlist.push(productId);
+    user.wishlist.push(productId);
     await user.save();
     res.status(200).json({
       status: "success",
-      message: "Product added to whishlist successfully",
-      whishlist: user.whishlist,
+      message: "Product added to wishlist successfully",
+      wishlist: user.wishlist,
     });
   } catch (error) {
-    console.log("Error in addToWhishlist controller:", error);
+    console.log("Error in addToWishlist controller:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
-export async function removeFromWhishlist(req, res) {
+export async function removeFromWishlist(req, res) {
   try {
     const { productId } = req.params;
     const user = req.user;
-    // check if product is  in whishlist
-    if (!user.whishlist.includes(productId)) {
-      return res.status(400).json({ error: "Product not in whishlist" });
+    // check if product is  in wishlist
+    if (!user.wishlist.includes(productId)) {
+      return res.status(400).json({ error: "Product not in wishlist" });
     }
-    user.whishlist.pull(productId);
+    user.wishlist.pull(productId);
     await user.save();
     res.status(200).json({
       status: "success",
-      message: "Product removed from whishlist successfully",
-      whishlist: user.whishlist,
+      message: "Product removed from wishlist successfully",
+      wishlist: user.wishlist,
     });
   } catch (error) {
-    console.log("Error in removeFromWhishlist controller:", error);
+    console.log("Error in removeFromWishlist controller:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 }
-export async function getWhishlist(req, res) {
+export async function getWishlist(req, res) {
   try {
-    const user = req.user;
+    // we're using populate ,bc wishlist is just an array of product IDs
+    const user = await User.findById(req.user._id).populate("wishlist");
     res.status(200).json({
       status: "success",
-      whishlist: user.whishlist,
+      wishlist: user.wishlist,
     });
   } catch (error) {
-    console.log("Error in getWhishlist controller:", error);
+    console.log("Error in getWishlist controller:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 }

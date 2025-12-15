@@ -1,11 +1,11 @@
 import express from "express";
 import {
   addAddress,
-  addToWhishlist,
+  addToWishlist,
   deleteAddress,
   getAddresses,
-  getWhishlist,
-  removeFromWhishlist,
+  getWishlist,
+  removeFromWishlist,
   updateAddress,
 } from "../controllers/user.controller.js";
 import { protectRoute } from "../middleware/auth.middleware.js";
@@ -21,7 +21,7 @@ router.delete("/addresses/:addressId", deleteAddress);
 
 //whishlist routes
 
-router.post("/whishlist", addToWhishlist);
-router.delete("/whishlist/:productId", removeFromWhishlist);
-router.get("/whishlist", getWhishlist);
+router.post("/wishlist", addToWishlist);
+router.delete("/wishlist/:productId", removeFromWishlist);
+router.get("/wishlist", getWishlist);
 export default router;
