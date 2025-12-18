@@ -34,12 +34,12 @@ export const addToCart = async (req, res) => {
     let cart = await Cart.findOne({ clerkId: req.user.clerkId });
 
     if (!cart) {
-      const user = req.user,
-        cart = await Cart.create({
-          user: req.user._id,
-          clerkId: req.user.clerkId,
-          items: [],
-        });
+      const user = req.user;
+      cart = await Cart.create({
+        user: user._id,
+        clerkId: user.clerkId,
+        items: [],
+      });
     }
     // check if product already in cart
     const existingItem = cart.items.find(
