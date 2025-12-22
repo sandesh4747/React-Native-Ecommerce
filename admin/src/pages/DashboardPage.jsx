@@ -27,22 +27,22 @@ export default function DashboardPage() {
       name: "Total Revenue",
       value: statsLoading
         ? "..."
-        : `$${statsData?.totalRevenue?.toFixed(2) || 0.0}`,
+        : `$${statsData?.totalRevenue?.toFixed(2) ?? 0.0}`,
       icon: <DollarSignIcon className="w-8 h-8" />,
     },
     {
       name: "Total Orders",
-      value: statsLoading ? "..." : `${statsData.totalOrders || 0.0}`,
+      value: statsLoading ? "..." : `${statsData?.totalOrders ?? 0}`,
       icon: <ShoppingBagIcon className="w-8 h-8" />,
     },
     {
       name: "Total Customers",
-      value: statsLoading ? "..." : `${statsData.totalCustomers || 0.0}`,
+      value: statsLoading ? "..." : `${statsData?.totalCustomers ?? 0}`,
       icon: <UsersIcon className="w-8 h-8" />,
     },
     {
       name: "Total Products",
-      value: statsLoading ? "..." : `${statsData.totalProducts || 0.0}`,
+      value: statsLoading ? "..." : `${statsData?.totalProducts ?? 0}`,
       icon: <PackageIcon className="w-8 h-8" />,
     },
   ];
