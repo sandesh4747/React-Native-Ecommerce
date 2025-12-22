@@ -14,7 +14,7 @@ import ProductsPage from "./pages/ProductsPage";
 import CustomersPage from "./pages/CustomersPage";
 import OrdersPage from "./pages/OrdersPage";
 import DashboardLayout from "./layouts/DashboardLayout";
-import { LoaderIcon } from "lucide-react";
+
 import PageLoader from "./components/PageLoader";
 
 export default function App() {

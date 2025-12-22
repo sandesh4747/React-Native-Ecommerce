@@ -1,9 +1,9 @@
 import React from "react";
-
+import { LoaderIcon } from "lucide-react";
 export default function PageLoader() {
   return (
     <div className="flex items-center justify-center h-screen">
-      <LoaderIcon class="size-12 animate-spin" />
+      <LoaderIcon className="size-12 animate-spin" />
     </div>
   );
 }
