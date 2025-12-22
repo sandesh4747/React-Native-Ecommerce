@@ -27,7 +27,7 @@ export default function DashboardPage() {
       name: "Total Revenue",
       value: statsLoading
         ? "..."
-        : `$${statsData.totalRevenue.toFixed(2) || 0.0}`,
+        : `$${statsData?.totalRevenue?.toFixed(2) || 0.0}`,
       icon: <DollarSignIcon className="w-8 h-8" />,
     },
     {
@@ -50,7 +50,7 @@ export default function DashboardPage() {
     <div className="space-y-6">
       {/* STATS  */}
       <div className="stats stats-vertical lg:stats-horizontal shadow w-full bg-base-100">
-        {statsCards.map((stat) => (
+        {statsCards?.map((stat) => (
           <div key={stat.name} className="stat">
             <div className="stat-figure text-primary">{stat.icon}</div>
             <div className="stat-title">{stat.name}</div>
