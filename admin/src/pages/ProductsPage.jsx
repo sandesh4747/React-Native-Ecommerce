@@ -354,7 +354,7 @@ export default function ProductsPage() {
 
               {imagePreviews.length > 0 && (
                 <div className="flex gap-2 mt-2">
-                  {imagePreviews.map((preview, index) => (
+                  {imagePreviews?.map((preview, index) => (
                     <div key={index} className="avatar">
                       <div className="w-20 rounded-lg">
                         <img src={preview} alt={`Preview ${index + 1}`} />

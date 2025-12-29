@@ -84,13 +84,13 @@ export default function OrdersPage() {
                           <div className="text-sm opacity-60">
                             {order.orderItems[0]?.name}
                             {order.orderItems.length > 1 &&
-                              `+${order.orderItems.length - 1} more`}
+                              ` +${order.orderItems.length - 1} more`}
                           </div>
                         </td>
 
                         <td>
                           <span className="font-semibold">
-                            ${order.totalPrice.toFixed(2)}
+                            ${(order.totalPrice ?? 0).toFixed(2)}
                           </span>
                         </td>
 

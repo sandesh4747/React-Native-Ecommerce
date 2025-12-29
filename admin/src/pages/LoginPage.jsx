@@ -3,7 +3,7 @@ import React from "react";
 
 export default function LoginPage() {
   return (
-    <div>
+    <div className="h-screen flex justify-center items-center">
       LoginPage
       <SignIn />
     </div>
