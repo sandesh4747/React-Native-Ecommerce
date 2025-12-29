@@ -1,6 +1,6 @@
 import express from "express";
 import path from "path";
-import { ENV } from "./config/env.js";
+
 import { connectDB } from "./config/db.js";
 import { clerkMiddleware } from "@clerk/express";
 import { serve } from "inngest/express";
@@ -12,6 +12,7 @@ import reviewRoutes from "./routes/review.route.js";
 import productRoutes from "./routes/product.route.js";
 import cartRoutes from "./routes/cart.route.js";
 import cors from "cors";
+import { ENV } from "./config/env.js";
 
 const app = express();
 const __dirname = path.resolve();
